@@ -9,9 +9,9 @@ services:
       - POSTGRES_PASSWORD=shoppy_password
       - POSTGRES_DB=shoppy_db
     volumes:
-      - shoppy-db-data:/var/libs/postgresql/data/
+      - shoppy-db-data1:/var/libs/postgresql/data/
     ports:
       - "5432:5432"
 
 volumes:
-  shoppy-db-data: {}
+  shoppy-db-data1: {}

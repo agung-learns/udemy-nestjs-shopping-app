@@ -6,6 +6,6 @@ export declare class UsersController {
     createUser(request: CreateUserRequest): Promise<{
         id: number;
         email: string;
-        password: string | null;
+        password: string;
     }>;
 }

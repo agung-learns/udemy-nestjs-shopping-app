@@ -6,10 +6,13 @@ const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const nestjs_pino_1 = require("nestjs-pino");
 async function bootstrap() {
-    const app = await core_1.NestFactory.create(app_module_1.AppModule);
+    const app = await core_1.NestFactory.create(app_module_1.AppModule, {
+        rawBody: true,
+        cors: true,
+        bodyParser: true,
+    });
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,
-        forbidNonWhitelisted: true,
     }));
     app.useLogger(app.get(nestjs_pino_1.Logger));
     const config = app.get(config_1.ConfigService);

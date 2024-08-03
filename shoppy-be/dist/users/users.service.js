@@ -24,10 +24,6 @@ let UsersService = class UsersService {
                     ...data,
                     password: await bcrypt.hash(data.password, 10),
                 },
-                select: {
-                    email: true,
-                    id: true,
-                },
             });
         }
         catch (e) {
