@@ -9,5 +9,6 @@ https://www.udemy.com/course/build-a-shopping-app-with-nextjs-nestjs-prisma/
 
 
 ### Sections
+- [Section 1](https://github.com/agung-learns/udemy-nestjs-shopping-app/tree/feature/section-1)
 - [Section 2](https://github.com/agung-learns/udemy-nestjs-shopping-app/tree/feature/section-2)
 - [Section 3](https://github.com/agung-learns/udemy-nestjs-shopping-app/tree/feature/section-3)
