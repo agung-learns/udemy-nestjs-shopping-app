@@ -82,3 +82,4 @@ out/
 next-env.d.ts
 
 .idea/
+dist/
