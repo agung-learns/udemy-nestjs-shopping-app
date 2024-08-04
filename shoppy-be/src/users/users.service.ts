@@ -3,6 +3,7 @@ import { CreateUserRequest } from './dto/create-user.request';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '@prisma/client';
 import * as bcrypt from 'bcryptjs';
+import { Prisma } from '@prisma/client/extension';
 
 @Injectable()
 export class UsersService {
@@ -21,5 +22,11 @@ export class UsersService {
       }
       throw e;
     }
+  }
+
+  async getUser(filter: any) {
+    return this.prismaService.user.findFirstOrThrow({
+      where: filter,
+    });
   }
 }

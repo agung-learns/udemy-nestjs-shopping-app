@@ -65,8 +65,9 @@ node_modules/
 
 
 # next.js
-/.next/
-/out/
+.next/
+out/
+
 
 *.pem
 
@@ -82,3 +83,7 @@ node_modules/
 next-env.d.ts
 
 .idea/
+# nestjs
+shoppy-be/dist/
+shoppy-ui/.next/
+shoppy-ui/out/
