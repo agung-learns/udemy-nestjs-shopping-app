@@ -1,10 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import {post} from "@/app/utils/fetch";
-import {FormError} from "@/app/common/form-error.interface";
+import {post} from "@/app/common/utils/fetch";
+import {FormError} from "@/app/common/interfaces/form-error.interface";
 import {cookies} from "next/headers";
 import {jwtDecode} from "jwt-decode";
+import {AUTHENTICATION_COOKIE} from "@/app/auth/auth-cookie";
 
 export default async function loginUser(_prevState: FormError, formData: FormData) {
     const { res, error } = await post('auth/login', formData);
@@ -20,7 +21,7 @@ const setAuthCookie = (response: Response) => {
     if (setCookieHeader) {
         const token = setCookieHeader.split(';')[0].split('=')[1];
         cookies().set({
-            name: 'Authentication',
+            name: AUTHENTICATION_COOKIE,
             value: token,
             secure: true,
             httpOnly: true,

@@ -1,5 +1,5 @@
-import {API_URL} from "@/app/constants/api";
-import {getErrorMessage} from "@/app/utils/errors";
+import {API_URL} from "@/app/common/constants/api";
+import {getErrorMessage} from "@/app/common/utils/errors";
 import {cookies} from "next/headers";
 
 export const getHeaders = () => ({
