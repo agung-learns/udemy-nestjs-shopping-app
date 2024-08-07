@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import {post} from "@/app/common/utils/fetch";
-import {FormError} from "@/app/common/interfaces/form-error.interface";
+import {FormError} from "@/app/common/interfaces/form-response.interface";
 import {cookies} from "next/headers";
 import {jwtDecode} from "jwt-decode";
 import {AUTHENTICATION_COOKIE} from "@/app/auth/auth-cookie";
