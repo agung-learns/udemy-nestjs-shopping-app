@@ -1,6 +1,7 @@
 export interface IProduct {
-    id: number;
-    name: string;
-    description: string;
-    price: number;
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageExist: boolean;
 }

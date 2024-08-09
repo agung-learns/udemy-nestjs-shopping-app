@@ -85,5 +85,6 @@ next-env.d.ts
 .idea/
 # nestjs
 shoppy-be/dist/
+shoppy-be/public/
 shoppy-ui/.next/
 shoppy-ui/out/
