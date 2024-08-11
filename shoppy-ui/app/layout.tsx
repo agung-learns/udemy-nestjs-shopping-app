@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {AppRouterCacheProvider} from "@mui/material-nextjs/v13-appRouter";
-import {Container, CssBaseline, ThemeProvider} from "@mui/material";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import darkTheme from "@/app/dark.theme";
 import Header from "@/app/header/header";
 import Providers from "@/app/providers";
-import authenticated from "@/app/auth/authenticated";
+import authenticated from "@/app/auth/actions/authenticated";
 import logout from "@/app/auth/logout";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -28,8 +28,10 @@ export default async function RootLayout({
       <body className={inter.className}>
         <Providers authenticated={isAuthenticated}>
           <CssBaseline />
-          <Header logout={logout}/>
-          <Container className={isAuthenticated ? 'mt-10' : ''}>{children}</Container>
+          <Header logout={logout} />
+          <Container className={isAuthenticated ? "mt-10" : ""}>
+            {children}
+          </Container>
         </Providers>
       </body>
     </html>
