@@ -6,6 +6,11 @@ import { join } from 'path';
 import { PRODUCT_IMAGES } from './product-image';
 import { Prisma } from '@prisma/client/extension';
 import { ProductsGateway } from './products.gateway';
+import {
+  GetObjectCommand,
+  PutObjectCommand,
+  S3Client,
+} from '@aws-sdk/client-s3';
 
 @Injectable()
 export class ProductsService {
@@ -13,6 +18,11 @@ export class ProductsService {
     private readonly prismaService: PrismaService,
     private readonly productsGateway: ProductsGateway,
   ) {}
+  private readonly s3Client = new S3Client({
+    region: 'us-east-1',
+  });
+  private readonly bucket = 'shoppy-products';
+
   async createProduct(createProduct: CreateProductRequest, userId: number) {
     const product = await this.prismaService.product.create({
       data: {
@@ -41,11 +51,13 @@ export class ProductsService {
 
   async imageExist(productId: number) {
     try {
-      await fs.access(
-        join(`${PRODUCT_IMAGES}/${productId}.png`),
-        fs.constants.F_OK,
+      const { Body } = await this.s3Client.send(
+        new GetObjectCommand({
+          Bucket: this.bucket,
+          Key: `${productId}.png`,
+        }),
       );
-      return true;
+      return !!Body;
     } catch (e) {
       return false;
     }
@@ -74,5 +86,15 @@ export class ProductsService {
     } catch (e) {
       throw new NotFoundException('product not found');
     }
+  }
+
+  async uploadProductImage(productId: string, b: any) {
+    await this.s3Client.send(
+      new PutObjectCommand({
+        Bucket: this.bucket,
+        Key: `${productId}.png`,
+        Body: b,
+      }),
+    );
   }
 }
